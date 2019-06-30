@@ -9,7 +9,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
 object ApiClient {
-    private const val BASE_URL = "https://api.darksky.net/forecast/"
+    private const val BASE_URL = "https://api.darksky.net/forecast/" + SecretKey.key
 
     val moshi: Moshi = Moshi.Builder()
         .build()
