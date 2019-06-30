@@ -1,7 +1,8 @@
-package com.example.low_pressure_check
+package com.example.low_pressure_check.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.low_pressure_check.R
 
 class MainActivity : AppCompatActivity() {
 
