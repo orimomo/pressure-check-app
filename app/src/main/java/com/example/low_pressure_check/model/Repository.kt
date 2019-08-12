@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 class Repository(private val retrofit: Retrofit) {
     private val service by lazy { retrofit.create(Service::class.java) }
 
-    suspend fun getForecast(): Response<ForecastEntity> {
+    suspend fun getForecast(): Response<CurrentlyEntity> {
         return service.getForecast()
     }
 }

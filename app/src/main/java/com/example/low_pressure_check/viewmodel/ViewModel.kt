@@ -12,8 +12,8 @@ class ViewModel(private val repository: Repository): ViewModel() {
         try {
             val res = repository.getForecast()
             if(res.isSuccessful) {
-                res.body()?.timezone?.let { timezone ->
-                    forecast.value = timezone
+                res.body()?.currently?.time?.let { time ->
+                    forecast.value = time
                 }
             } else {
                 //Timberを入れたい
