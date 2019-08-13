@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import com.example.low_pressure_check.model.Repository
 
 class ViewModel(private val repository: Repository): ViewModel() {
-
     val forecast = MutableLiveData<String>()
 
     suspend fun fetchForecast() {
