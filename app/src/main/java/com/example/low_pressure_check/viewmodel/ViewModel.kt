@@ -6,9 +6,8 @@ import com.example.low_pressure_check.model.Repository
 import kotlinx.coroutines.launch
 
 class ViewModel(private val repository: Repository): ViewModel(), LifecycleObserver {
-    val summary = MutableLiveData<String>()
-    val icon = MutableLiveData<String>()
     val pressure = MutableLiveData<String>()
+    val status = MutableLiveData<Status>()
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     @Suppress("UNUSED")
@@ -17,21 +16,25 @@ class ViewModel(private val repository: Repository): ViewModel(), LifecycleObser
     }
 
     private suspend fun fetchForecast() {
+        status.value = Status.LOADING
         try {
             val res = repository.getForecast()
             if(res.isSuccessful) {
                 res.body()?.currently?.let { currently ->
-                    summary.value = currently.summary
-                    icon.value = currently.icon
                     pressure.value = currently.pressure
                 }
+                status.value = Status.COMPLETED
             } else {
-                //Timberを入れたい
-                // https://qiita.com/hkusu/items/d4f24141d11e05f57451
+                status.value = Status.FAILED
             }
         } catch(e: Exception) {
-            //Timberを入れたい
-            //ちゃんとエラーハンドリングしたい
+            status.value = Status.FAILED
         }
+    }
+
+    enum class Status {
+        LOADING,
+        COMPLETED,
+        FAILED
     }
 }
