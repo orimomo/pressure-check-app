@@ -8,5 +8,7 @@ data class CurrentlyEntity(
 ) : Serializable
 
 data class ContentEntity(
-    val time: String
+    val summary: String,
+    val icon: String,
+    val pressure: String
 ) : Serializable
