@@ -2,6 +2,10 @@ package com.example.low_pressure_check.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.SpannableStringBuilder
+import android.text.Spanned
+import android.text.style.AbsoluteSizeSpan
+import android.widget.TextView
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
@@ -38,7 +42,10 @@ class MainActivity : AppCompatActivity(){
                 }
                 ViewModel.Status.COMPLETED -> {
                     binding.progressBar.isGone = true
-                    binding.textView.isVisible = true
+                    viewModel.pressure.value?.let { pressure ->
+                        binding.textView.changeSizeOfText(pressure, 56)
+                        binding.textView.isVisible = true
+                    }
                 }
                 ViewModel.Status.FAILED -> {
                     Snackbar.make(binding.root , "データの取得に失敗しました。", Snackbar.LENGTH_LONG).show()
@@ -47,4 +54,16 @@ class MainActivity : AppCompatActivity(){
             }
         })
     }
+}
+
+fun TextView.changeSizeOfText(target: String, size: Int){
+    val spannable = SpannableStringBuilder(target + "hPa")
+    val endPosition = target.length
+    spannable.setSpan(
+        AbsoluteSizeSpan(size, true),
+        0,
+        endPosition,
+        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+    )
+    text = spannable
 }
