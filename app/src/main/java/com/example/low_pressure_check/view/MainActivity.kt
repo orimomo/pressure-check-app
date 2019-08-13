@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import com.example.low_pressure_check.R
 import com.example.low_pressure_check.databinding.ActivityMainBinding
 import com.example.low_pressure_check.viewmodel.ViewModel
+import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity(){
@@ -40,7 +41,7 @@ class MainActivity : AppCompatActivity(){
                     binding.textView.isVisible = true
                 }
                 ViewModel.Status.FAILED -> {
-
+                    Snackbar.make(binding.root , "データの取得に失敗しました。", Snackbar.LENGTH_LONG).show()
                 }
                 else -> Unit
             }
