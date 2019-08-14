@@ -58,11 +58,10 @@ class MainActivity : AppCompatActivity(){
 
 fun TextView.changeSizeOfText(target: String, size: Int){
     val spannable = SpannableStringBuilder(target + "hPa")
-    val endPosition = target.length
     spannable.setSpan(
         AbsoluteSizeSpan(size, true),
         0,
-        endPosition,
+        target.length,
         Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
     )
     text = spannable
