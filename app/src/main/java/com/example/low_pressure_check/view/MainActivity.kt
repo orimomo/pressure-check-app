@@ -38,13 +38,15 @@ class MainActivity : AppCompatActivity(){
             when (status) {
                 ViewModel.Status.LOADING -> {
                     binding.progressBar.isVisible = true
-                    binding.textView.isGone = true
+                    binding.textDate.isGone = true
+                    binding.textPressure.isGone = true
                 }
                 ViewModel.Status.COMPLETED -> {
                     binding.progressBar.isGone = true
+                    binding.textDate.isVisible = true
                     viewModel.pressure.value?.let { pressure ->
-                        binding.textView.changeSizeOfText(pressure, 56)
-                        binding.textView.isVisible = true
+                        binding.textPressure.changeSizeOfText(pressure, 56)
+                        binding.textPressure.isVisible = true
                     }
                 }
                 ViewModel.Status.FAILED -> {

@@ -16,7 +16,20 @@
             android:layout_height="match_parent">
 
         <TextView
-                android:id="@+id/textView"
+                android:id="@+id/text_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.today + ` @Tokyo`}"
+                android:textSize="18sp"
+                android:visibility="gone"
+                android:layout_marginBottom="62dp"
+                app:layout_constraintBottom_toTopOf="@+id/text_pressure"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="2019/08/14 @Tokyo"/>
+
+        <TextView
+                android:id="@+id/text_pressure"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
@@ -27,7 +40,7 @@
                 android:textSize="30sp"/>
 
         <ProgressBar
-                android:id="@+id/progressBar"
+                android:id="@+id/progress_bar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
@@ -35,5 +48,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
