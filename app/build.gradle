@@ -54,6 +54,9 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
 
+    // UI
+    implementation 'com.jakewharton.threetenabp:threetenabp:1.2.1'
+
     // DI
     implementation 'org.koin:koin-androidx-viewmodel:1.0.2'
 

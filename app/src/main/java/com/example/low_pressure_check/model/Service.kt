@@ -4,7 +4,7 @@ import retrofit2.Response
 import retrofit2.http.GET
 
 interface Service {
-    @GET("37.8267,-122.4233")
+    @GET("35.658851, 139.745455") // 東京タワーの緯度経度
     suspend fun getForecast(
     ): Response<CurrentlyEntity>
 }
