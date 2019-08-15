@@ -10,17 +10,16 @@ import org.threeten.bp.format.DateTimeFormatter
 class ViewModel(private val repository: Repository): ViewModel(), LifecycleObserver {
     val pressure = MutableLiveData<String>()
     val today = MutableLiveData<String>()
+    val place = MutableLiveData<String>()
     val status = MutableLiveData<Status>()
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     @Suppress("UNUSED")
     fun onCreate() = viewModelScope.launch {
-        fetchForecast()
-        val formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd")
-        today.value = LocalDate.now().format(formatter)
+        fetchInfo()
     }
 
-    private suspend fun fetchForecast() {
+    private suspend fun fetchInfo() {
         status.value = Status.LOADING
         try {
             val res = repository.getForecast()
@@ -28,6 +27,8 @@ class ViewModel(private val repository: Repository): ViewModel(), LifecycleObser
                 res.body()?.currently?.let { currently ->
                     pressure.value = currently.pressure
                 }
+                setToday()
+                place.value = "＠東京"
                 status.value = Status.COMPLETED
             } else {
                 status.value = Status.FAILED
@@ -36,6 +37,12 @@ class ViewModel(private val repository: Repository): ViewModel(), LifecycleObser
             status.value = Status.FAILED
         }
     }
+
+    private fun setToday() {
+        val formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd")
+        today.value = LocalDate.now().format(formatter)
+    }
+
 
     enum class Status {
         LOADING,
