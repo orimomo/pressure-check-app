@@ -16,10 +16,10 @@ class ViewModel(private val repository: Repository): ViewModel(), LifecycleObser
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     @Suppress("UNUSED")
     fun onCreate() = viewModelScope.launch {
-        fetchInfo()
+        setDefaultInfo()
     }
 
-    private suspend fun fetchInfo() {
+    private suspend fun setDefaultInfo() {
         status.value = Status.LOADING
         try {
             val res = repository.getForecast()
@@ -28,7 +28,7 @@ class ViewModel(private val repository: Repository): ViewModel(), LifecycleObser
                     pressure.value = currently.pressure
                 }
                 setToday()
-                place.value = "＠東京"
+                place.value = "@Tokyo"
                 status.value = Status.COMPLETED
             } else {
                 status.value = Status.FAILED
@@ -43,6 +43,9 @@ class ViewModel(private val repository: Repository): ViewModel(), LifecycleObser
         today.value = LocalDate.now().format(formatter)
     }
 
+    fun changePlace(newPlace: String) {
+        place.value = newPlace
+    }
 
     enum class Status {
         LOADING,
