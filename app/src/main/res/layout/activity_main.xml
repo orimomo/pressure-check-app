@@ -71,14 +71,16 @@
 
         <Button
                 android:id="@+id/button"
-                android:layout_width="120dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:text="地点変更"
+                android:text="Change Place"
+                android:background="@color/colorPrimary"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="32dp"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginBottom="32dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:textSize="18sp"/>
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
