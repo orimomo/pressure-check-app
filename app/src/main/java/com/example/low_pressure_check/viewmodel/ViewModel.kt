@@ -4,7 +4,7 @@ import androidx.lifecycle.*
 import androidx.lifecycle.ViewModel
 import com.example.low_pressure_check.model.Repository
 import kotlinx.coroutines.launch
-import org.threeten.bp.LocalDate
+import org.threeten.bp.LocalDateTime
 import org.threeten.bp.format.DateTimeFormatter
 
 class ViewModel(private val repository: Repository): ViewModel(), LifecycleObserver {
@@ -17,8 +17,8 @@ class ViewModel(private val repository: Repository): ViewModel(), LifecycleObser
     @Suppress("UNUSED")
     fun onCreate() = viewModelScope.launch {
         fetchForecast(Place.TOKYO.coordinates)
-        val formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd")
-        today.value = LocalDate.now().format(formatter)
+        val formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")
+        today.value = LocalDateTime.now().format(formatter)
     }
 
     private suspend fun fetchForecast(coordinates: String) {
