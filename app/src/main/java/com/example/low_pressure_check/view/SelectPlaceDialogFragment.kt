@@ -38,19 +38,16 @@ class SelectPlaceDialogFragment : DialogFragment() {
         if (checkedId == -1) return
         when(checkedId) {
             R.id.radio_button1 -> {
-                viewModel.changePlace("@Hokkaido")
+                viewModel.changeInfo(ViewModel.Place.HOKKAIDO)
             }
-
             R.id.radio_button2 -> {
-                viewModel.changePlace("@Tokyo")
+                viewModel.changeInfo(ViewModel.Place.TOKYO)
             }
-
             R.id.radio_button3 -> {
-                viewModel.changePlace("@Osaka")
+                viewModel.changeInfo(ViewModel.Place.OSAKA)
             }
-
             R.id.radio_button4 -> {
-                viewModel.changePlace("@Hakata")
+                viewModel.changeInfo(ViewModel.Place.HAKATA)
             }
         }
     }
