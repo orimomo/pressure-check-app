@@ -70,10 +70,10 @@ class MainActivity : AppCompatActivity(){
 
     private fun setBackground(place: String) {
         when(place) {
-            "@Hokkaido" -> binding.imageView.setImageResource(R.drawable.hokkaido)
-            "@Tokyo" -> binding.imageView.setImageResource(R.drawable.tokyo)
-            "@Osaka" -> binding.imageView.setImageResource(R.drawable.osaka)
-            "@Okinawa" -> binding.imageView.setImageResource(R.drawable.okinawa)
+            ViewModel.Place.HOKKAIDO.label -> binding.imageView.setImageResource(R.drawable.hokkaido)
+            ViewModel.Place.TOKYO.label -> binding.imageView.setImageResource(R.drawable.tokyo)
+            ViewModel.Place.OSAKA.label -> binding.imageView.setImageResource(R.drawable.osaka)
+            ViewModel.Place.OKINAWA.label -> binding.imageView.setImageResource(R.drawable.okinawa)
         }
     }
 }
