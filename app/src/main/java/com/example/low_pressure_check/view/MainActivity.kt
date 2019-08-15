@@ -34,16 +34,27 @@ class MainActivity : AppCompatActivity(){
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
+        binding.button.setOnClickListener {
+            supportFragmentManager?.let { manager ->
+                SelectPlaceDialogFragment().show(manager, SelectPlaceDialogFragment::class.simpleName)
+            }
+        }
+
         viewModel.status.observe(this, Observer { status ->
             when (status) {
                 ViewModel.Status.LOADING -> {
                     binding.progressBar.isVisible = true
                     binding.textDate.isGone = true
+                    binding.textPlace.isGone = true
                     binding.textPressure.isGone = true
                 }
                 ViewModel.Status.COMPLETED -> {
                     binding.progressBar.isGone = true
                     binding.textDate.isVisible = true
+                    binding.textPlace.isVisible = true
+                    viewModel.place.value?.let { place ->
+                        setBackground(place)
+                    }
                     viewModel.pressure.value?.let { pressure ->
                         binding.textPressure.changeSizeOfText(pressure, 56)
                         binding.textPressure.isVisible = true
@@ -55,6 +66,15 @@ class MainActivity : AppCompatActivity(){
                 else -> Unit
             }
         })
+    }
+
+    private fun setBackground(place: String) {
+        when(place) {
+            "@Hokkaido" -> binding.imageView.setImageResource(R.drawable.hokkaido)
+            "@Tokyo" -> binding.imageView.setImageResource(R.drawable.tokyo)
+            "@Osaka" -> binding.imageView.setImageResource(R.drawable.osaka)
+            "@Okinawa" -> binding.imageView.setImageResource(R.drawable.okinawa)
+        }
     }
 }
 
