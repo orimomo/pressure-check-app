@@ -34,6 +34,12 @@ class MainActivity : AppCompatActivity(){
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
+        binding.button.setOnClickListener {
+            supportFragmentManager?.let { manager ->
+                SelectPlaceDialogFragment().show(manager, SelectPlaceDialogFragment::class.simpleName)
+            }
+        }
+
         viewModel.status.observe(this, Observer { status ->
             when (status) {
                 ViewModel.Status.LOADING -> {
