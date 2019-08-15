@@ -17,8 +17,6 @@ class ViewModel(private val repository: Repository): ViewModel(), LifecycleObser
     @Suppress("UNUSED")
     fun onCreate() = viewModelScope.launch {
         fetchForecast(Place.TOKYO.coordinates)
-        val formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")
-        today.value = LocalDateTime.now().format(formatter)
     }
 
     private suspend fun fetchForecast(coordinates: String) {
@@ -29,6 +27,8 @@ class ViewModel(private val repository: Repository): ViewModel(), LifecycleObser
                 res.body()?.currently?.let { currently ->
                     pressure.value = currently.pressure
                 }
+                val formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")
+                today.value = LocalDateTime.now().format(formatter)
                 status.value = Status.COMPLETED
             } else {
                 status.value = Status.FAILED
