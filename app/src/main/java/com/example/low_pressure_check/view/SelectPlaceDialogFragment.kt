@@ -47,7 +47,7 @@ class SelectPlaceDialogFragment : DialogFragment() {
                 viewModel.changeInfo(ViewModel.Place.OSAKA)
             }
             R.id.radio_button4 -> {
-                viewModel.changeInfo(ViewModel.Place.HAKATA)
+                viewModel.changeInfo(ViewModel.Place.OKINAWA)
             }
         }
     }

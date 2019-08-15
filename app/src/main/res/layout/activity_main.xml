@@ -18,7 +18,7 @@
                 android:id="@+id/image_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/sky"
+                android:src="@drawable/tokyo"
                 android:scaleType="centerCrop"/>
 
         <TextView
@@ -40,6 +40,7 @@
                 android:layout_height="wrap_content"
                 android:text="@{viewModel.place}"
                 android:textSize="18sp"
+                android:visibility="gone"
                 android:layout_marginBottom="32dp"
                 app:layout_constraintBottom_toTopOf="@+id/text_pressure"
                 app:layout_constraintEnd_toEndOf="parent"

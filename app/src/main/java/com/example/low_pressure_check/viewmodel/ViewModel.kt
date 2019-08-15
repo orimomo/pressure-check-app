@@ -1,6 +1,5 @@
 package com.example.low_pressure_check.viewmodel
 
-import androidx.annotation.DrawableRes
 import androidx.lifecycle.*
 import androidx.lifecycle.ViewModel
 import com.example.low_pressure_check.model.Repository
@@ -43,15 +42,19 @@ class ViewModel(private val repository: Repository): ViewModel(), LifecycleObser
         when(newPlace) {
             Place.HOKKAIDO -> {
                 place.value = "@Hokkaido"
+                fetchForecast()
             }
             Place.TOKYO -> {
                 place.value = "@Tokyo"
+                fetchForecast()
             }
             Place.OSAKA -> {
                 place.value = "@Osaka"
+                fetchForecast()
             }
-            Place.HAKATA -> {
-                place.value = "@Hakata"
+            Place.OKINAWA -> {
+                place.value = "@Okinawa"
+                fetchForecast()
             }
         }
     }
@@ -66,6 +69,6 @@ class ViewModel(private val repository: Repository): ViewModel(), LifecycleObser
         HOKKAIDO,
         TOKYO,
         OSAKA,
-        HAKATA
+        OKINAWA
     }
 }
