@@ -14,6 +14,9 @@ class SelectPlaceDialogFragment : DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?  {
         binding = DialogSelectPlaceBinding.inflate(inflater, container, false)
 
+        binding.button.setOnClickListener {
+        }
+
         return binding.root
     }
 
