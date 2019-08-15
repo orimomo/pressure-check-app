@@ -16,15 +16,15 @@ class ViewModel(private val repository: Repository): ViewModel(), LifecycleObser
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     @Suppress("UNUSED")
     fun onCreate() = viewModelScope.launch {
-        fetchForecast()
+        fetchForecast(Place.TOKYO.coordinates)
         val formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd")
         today.value = LocalDate.now().format(formatter)
     }
 
-    private suspend fun fetchForecast() {
+    private suspend fun fetchForecast(coordinates: String) {
         status.value = Status.LOADING
         try {
-            val res = repository.getForecast()
+            val res = repository.getForecast(coordinates)
             if(res.isSuccessful) {
                 res.body()?.currently?.let { currently ->
                     pressure.value = currently.pressure
@@ -41,20 +41,20 @@ class ViewModel(private val repository: Repository): ViewModel(), LifecycleObser
     fun changeInfo(newPlace: Place) = viewModelScope.launch {
         when(newPlace) {
             Place.HOKKAIDO -> {
-                place.value = "@Hokkaido"
-                fetchForecast()
+                place.value = Place.HOKKAIDO.label
+                fetchForecast(Place.HOKKAIDO.coordinates)
             }
             Place.TOKYO -> {
-                place.value = "@Tokyo"
-                fetchForecast()
+                place.value = Place.TOKYO.label
+                fetchForecast(Place.TOKYO.coordinates)
             }
             Place.OSAKA -> {
-                place.value = "@Osaka"
-                fetchForecast()
+                place.value = Place.OSAKA.label
+                fetchForecast(Place.OSAKA.coordinates)
             }
             Place.OKINAWA -> {
-                place.value = "@Okinawa"
-                fetchForecast()
+                place.value = Place.OKINAWA.label
+                fetchForecast(Place.OKINAWA.coordinates)
             }
         }
     }
@@ -65,10 +65,10 @@ class ViewModel(private val repository: Repository): ViewModel(), LifecycleObser
         FAILED
     }
 
-    enum class Place {
-        HOKKAIDO,
-        TOKYO,
-        OSAKA,
-        OKINAWA
+    enum class Place(val label: String, val coordinates: String) {
+        HOKKAIDO("@Hokkaido", "43.069776, 141.350139"), // さっぽろ駅の座標
+        TOKYO("@Tokyo", "35.681541, 139.767114"), // 東京駅の座標
+        OSAKA("@Osaka", "34.702768, 135.495951"), // 大阪駅の座標
+        OKINAWA("@Okinawa", "26.206692, 127.646531") // 那覇空港の座標
     }
 }

@@ -24,12 +24,10 @@ class SelectPlaceDialogFragment : DialogFragment() {
                 binding.button.isEnabled = true
             }
         }
-
         binding.button.setOnClickListener {
             changePlace()
             dismiss()
         }
-
         return binding.root
     }
 

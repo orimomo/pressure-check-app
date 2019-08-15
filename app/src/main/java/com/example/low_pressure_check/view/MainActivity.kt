@@ -76,7 +76,6 @@ class MainActivity : AppCompatActivity(){
             "@Okinawa" -> binding.imageView.setImageResource(R.drawable.okinawa)
         }
     }
-
 }
 
 fun TextView.changeSizeOfText(target: String, size: Int){
