@@ -10,7 +10,7 @@ import org.threeten.bp.format.DateTimeFormatter
 class ViewModel(private val repository: Repository): ViewModel(), LifecycleObserver {
     val pressure = MutableLiveData<String>()
     val today = MutableLiveData<String>()
-    val place = MutableLiveData<String>("@Tokyo")
+    val place = MutableLiveData<String>("Tokyo")
     val status = MutableLiveData<Status>()
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
@@ -39,21 +39,18 @@ class ViewModel(private val repository: Repository): ViewModel(), LifecycleObser
     }
 
     fun changeInfo(newPlace: String) = viewModelScope.launch {
-        when("@$newPlace") {
+        place.value = newPlace
+        when(newPlace) {
             Place.HOKKAIDO.label -> {
-                place.value = Place.HOKKAIDO.label
                 fetchForecast(Place.HOKKAIDO.coordinates)
             }
             Place.TOKYO.label -> {
-                place.value = Place.TOKYO.label
                 fetchForecast(Place.TOKYO.coordinates)
             }
             Place.OSAKA.label -> {
-                place.value = Place.OSAKA.label
                 fetchForecast(Place.OSAKA.coordinates)
             }
             Place.OKINAWA.label -> {
-                place.value = Place.OKINAWA.label
                 fetchForecast(Place.OKINAWA.coordinates)
             }
         }
@@ -66,9 +63,9 @@ class ViewModel(private val repository: Repository): ViewModel(), LifecycleObser
     }
 
     enum class Place(val label: String, val coordinates: String) {
-        HOKKAIDO("@Hokkaido", "43.069776, 141.350139"), // さっぽろ駅の座標
-        TOKYO("@Tokyo", "35.681541, 139.767114"), // 東京駅の座標
-        OSAKA("@Osaka", "34.702768, 135.495951"), // 大阪駅の座標
-        OKINAWA("@Okinawa", "26.206692, 127.646531") // 那覇空港の座標
+        HOKKAIDO("Hokkaido", "43.069776, 141.350139"), // さっぽろ駅の座標
+        TOKYO("Tokyo", "35.681541, 139.767114"), // 東京駅の座標
+        OSAKA("Osaka", "34.702768, 135.495951"), // 大阪駅の座標
+        OKINAWA("Okinawa", "26.206692, 127.646531") // 那覇空港の座標
     }
 }

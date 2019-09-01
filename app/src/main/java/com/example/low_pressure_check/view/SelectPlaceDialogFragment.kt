@@ -13,6 +13,10 @@ class SelectPlaceDialogFragment : DialogFragment() {
     private var checkedItem = -1
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        viewModel.place.value?.let { place ->
+            checkedItem = placeList.indexOf(place)
+        }
+
         return AlertDialog.Builder(activity)
             .setTitle("Choose a place!")
             .setSingleChoiceItems(placeList, checkedItem) { _, which ->

@@ -38,7 +38,7 @@
                 android:id="@+id/text_place"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.place}"
+                android:text="@{`@` + viewModel.place}"
                 android:textSize="18sp"
                 android:visibility="gone"
                 android:layout_marginBottom="32dp"
