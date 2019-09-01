@@ -7,7 +7,8 @@
 * データ取得には[Dark Sky API](https://darksky.net/dev/docs)を使用
 
 ## デモ
-![pressure-check-app-2](https://user-images.githubusercontent.com/12453846/63096325-a4b13a80-bfa8-11e9-9fc2-b6874ef48d5f.gif)
+![Sep-01-2019 16-05-43](https://user-images.githubusercontent.com/12453846/64072965-82baf600-ccd2-11e9-9e22-6d5f81adec49.gif)
+
 
 ## 環境
 * macOS: 10.15 Beta
