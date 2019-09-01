@@ -38,21 +38,21 @@ class ViewModel(private val repository: Repository): ViewModel(), LifecycleObser
         }
     }
 
-    fun changeInfo(newPlace: Place) = viewModelScope.launch {
-        when(newPlace) {
-            Place.HOKKAIDO -> {
+    fun changeInfo(newPlace: String) = viewModelScope.launch {
+        when("@$newPlace") {
+            Place.HOKKAIDO.label -> {
                 place.value = Place.HOKKAIDO.label
                 fetchForecast(Place.HOKKAIDO.coordinates)
             }
-            Place.TOKYO -> {
+            Place.TOKYO.label -> {
                 place.value = Place.TOKYO.label
                 fetchForecast(Place.TOKYO.coordinates)
             }
-            Place.OSAKA -> {
+            Place.OSAKA.label -> {
                 place.value = Place.OSAKA.label
                 fetchForecast(Place.OSAKA.coordinates)
             }
-            Place.OKINAWA -> {
+            Place.OKINAWA.label -> {
                 place.value = Place.OKINAWA.label
                 fetchForecast(Place.OKINAWA.coordinates)
             }
